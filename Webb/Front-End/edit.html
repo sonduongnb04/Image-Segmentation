@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chỉnh sửa ảnh phân đoạn</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="edit.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Online Image Segmentation</h1>
+            <div class="language-selector">
+                <button id="vn-lang" class="active">Tiếng Việt</button>
+                <button id="en-lang">English</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Trang chỉnh sửa -->
+        <section class="edit-section">
+            <div class="edit-navbar">
+                <a href="index.html" class="nav-button" id="back-btn">
+                    <span class="icon">⬅️</span> <span id="back-text">Trở lại</span>
+                </a>
+                <button class="nav-button" id="zoom-btn">
+                    <span class="icon">🔍</span> <span id="zoom-text">Thu phóng</span>
+                </button>
+                <button class="nav-button" id="clear-btn">
+                    <span class="icon">❌</span> <span id="clear-text">Xóa bỏ</span>
+                </button>
+            </div>
+            <div class="edit-image-container">
+                <div class="image-comparison-container">
+                    <h3 id="original-title">Ảnh gốc</h3>
+                    <div class="image-wrapper">
+                        <img src="" alt="Ảnh gốc" id="original-image">
+                    </div>
+                </div>
+                <div class="image-comparison-container">
+                    <h3 id="segmented-title">Ảnh phân đoạn</h3>
+                    <div class="image-wrapper">
+                        <img src="" alt="Ảnh phân đoạn" id="edit-image">
+                    </div>
+                </div>
+            </div>
+            <div class="edit-controls">
+                <button class="button" id="download-edit-btn">Tải về</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Phân đoạn Ảnh Trực tuyến. Dự án nghiên cứu.</p>
+        </div>
+    </footer>
+
+    <!-- Modal zoom cho ảnh lớn -->
+    <div id="zoom-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" id="modal-close-btn">&times;</span>
+            <img id="modal-image" src="" alt="Ảnh phân đoạn phóng to">
+        </div>
+    </div>
+
+    <script src="edit.js"></script>
+</body>
+
+</html>

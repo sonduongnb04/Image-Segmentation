@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phân đoạn ảnh giao thông trực tuyến</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Phân đoạn ảnh giao thông trực tuyến</h1>
+            <div class="language-selector">
+                <button id="vn-lang" class="active">Tiếng Việt</button>
+                <button id="en-lang">English</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Trang 1: Tải lên ảnh -->
+        <section class="upload-section" id="upload-section">
+            <h2>Tải ảnh lên</h2>
+            <div class="upload-container" id="upload-container">
+                <div class="upload-area" id="upload-area">
+                    <button class="button" id="select-file-btn">Chọn tệp</button>
+                    <div class="image-preview" id="image-preview-container" hidden>
+                        <img src="" alt="Xem trước Ảnh" id="preview-image">
+                    </div>
+                    <input type="file" id="file-input" accept="image/*" hidden>
+                </div>
+                <div class="upload-controls">
+                    <button class="button" id="process-btn" disabled>Xử lý</button>
+                    <button class="button secondary" id="change-image-btn" hidden>Đổi ảnh</button>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Phân đoạn ảnh giao thông trực tuyến. Dự án nghiên cứu.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

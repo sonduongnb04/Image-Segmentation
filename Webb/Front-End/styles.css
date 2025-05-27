@@ -1,0 +1,486 @@
+:root {
+    --primary-color: #6a11cb;
+    /* Tím đậm */
+    --secondary-color: #2575fc;
+    /* Xanh dương */
+    --accent-color: #8a4fff;
+    /* Tím nhạt hơn cho hover */
+    --background-color: #f4f7fc;
+    /* Nền xám rất nhạt */
+    --surface-color: #ffffff;
+    /* Màu nền của các box */
+    --text-color: #333a56;
+    /* Xám đậm */
+    --subtle-text-color: #657786;
+    /* Xám nhạt hơn */
+    --border-color: #e1e8ed;
+    /* Màu viền nhạt */
+    --shadow-color: rgba(106, 17, 203, 0.15);
+    --success-color: #28a745;
+    --font-family: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.7;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    font-size: 16px;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    /* Giảm nhẹ max-width */
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    position: sticky;
+    /* Giữ header */
+    top: 0;
+    z-index: 1000;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: white;
+    /* Đảm bảo màu chữ là trắng */
+    margin: 0;
+}
+
+.language-selector {
+    display: flex;
+    gap: 8px;
+}
+
+.language-selector button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    /* Bo tròn hơn */
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.language-selector button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.language-selector button.active {
+    background: white;
+    color: var(--primary-color);
+    border-color: white;
+}
+
+main {
+    padding: 3rem 0;
+    /* Tăng padding */
+}
+
+section {
+    margin-bottom: 2.5rem;
+    /* Tăng margin */
+    background: var(--surface-color);
+    border-radius: 12px;
+    /* Bo góc nhiều hơn */
+    padding: 2.5rem;
+    /* Tăng padding */
+    box-shadow: 0 6px 20px var(--shadow-color);
+}
+
+h2 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    /* Tăng size */
+    font-weight: 600;
+    text-align: center;
+    /* Căn giữa tiêu đề section */
+    margin-bottom: 2rem;
+    /* Tăng margin */
+}
+
+h3 {
+    /* Style cho tiêu đề ảnh gốc/phân đoạn (nếu còn dùng) */
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--subtle-text-color);
+    margin-bottom: 0.8rem;
+}
+
+.upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Căn giữa các phần tử con */
+    gap: 1.5rem;
+}
+
+.upload-area {
+    border: 2px dashed var(--primary-color);
+    border-radius: 8px;
+    padding: 40px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    /* Cần thiết nếu muốn định vị tuyệt đối preview sau này */
+    min-height: 150px;
+    /* Đảm bảo chiều cao tối thiểu */
+    display: flex;
+    /* Sử dụng flexbox để căn giữa */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* Xếp nút và preview theo chiều dọc */
+}
+
+.upload-area.highlight {
+    background-color: var(--secondary-light);
+    border-color: var(--secondary-color);
+}
+
+/* Ẩn nút chọn tệp khi đã có ảnh */
+.upload-area.has-image #select-file-btn {
+    display: none;
+}
+
+/* Định dạng cho vùng chứa ảnh xem trước bên trong khu vực upload */
+.upload-area .image-preview {
+    width: 100%;
+    /* Chiếm toàn bộ chiều rộng */
+    height: 100%;
+    /* Chiếm toàn bộ chiều cao */
+    display: flex;
+    /* Dùng flex để căn giữa ảnh */
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* Ẩn phần thừa nếu ảnh quá lớn */
+}
+
+/* Định dạng cho chính ảnh xem trước */
+.upload-area .image-preview #preview-image {
+    max-width: 100%;
+    /* Đảm bảo ảnh không vượt quá chiều rộng vùng chứa */
+    max-height: 250px;
+    /* Giới hạn chiều cao tối đa cho xem trước */
+    height: auto;
+    /* Giữ tỷ lệ khung hình */
+    display: block;
+    /* Loại bỏ khoảng trống thừa bên dưới ảnh */
+    object-fit: contain;
+    /* Co giãn ảnh nhưng giữ tỷ lệ */
+}
+
+/* Khi có ảnh, loại bỏ viền và padding của khu vực upload */
+.upload-area.has-image {
+    border: none;
+    padding: 0;
+}
+
+.upload-controls {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    /* Thêm khoảng cách giữa các nút */
+    justify-content: center;
+    /* Căn giữa các nút */
+}
+
+.upload-controls .button {
+    margin-top: 0;
+}
+
+.button {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    /* Tăng padding */
+    border-radius: 8px;
+    /* Bo góc mềm */
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: inline-flex;
+    /* Cho phép align-items */
+    align-items: center;
+    gap: 8px;
+}
+
+.button:hover:not(:disabled) {
+    background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.button:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.button:disabled {
+    background: #ccc;
+    /* Màu xám khi bị vô hiệu hóa */
+    color: #888;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.button.secondary {
+    background: var(--surface-color);
+    color: var(--primary-color);
+    border: 1px solid var(--border-color);
+    box-shadow: none;
+}
+
+.button.secondary:hover:not(:disabled) {
+    background-color: #f8f9fa;
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    transform: none;
+    /* Không cần hiệu ứng nâng */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.result-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.image-container {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+}
+
+.image-container img {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.download-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 2rem;
+}
+
+footer {
+    background-color: var(--surface-color);
+    padding: 1.5rem 0;
+    text-align: center;
+    margin-top: 3rem;
+    border-top: 1px solid var(--border-color);
+    color: var(--subtle-text-color);
+    font-size: 0.9rem;
+}
+
+/* Thêm style cho trang chỉnh sửa */
+.edit-section {
+    padding: 0;
+    /* Xóa padding mặc định của section */
+    box-shadow: 0 8px 25px var(--shadow-color);
+    /* Tăng shadow */
+}
+
+.edit-navbar {
+    display: flex;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    padding: 12px 20px;
+    border-radius: 12px 12px 0 0;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    /* Cho phép xuống dòng trên mobile */
+}
+
+.nav-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 8px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+}
+
+.nav-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-1px);
+}
+
+.nav-button .icon {
+    font-size: 18px;
+    /* Tăng size icon */
+    line-height: 1;
+    /* Căn icon tốt hơn */
+}
+
+.edit-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background: var(--background-color);
+    /* Màu nền giống body */
+    min-height: 450px;
+    position: relative;
+    overflow: hidden;
+    /* Ẩn phần ảnh bị tràn khi zoom */
+}
+
+.edit-image-container img {
+    max-width: 100%;
+    max-height: 70vh;
+    /* Giới hạn chiều cao */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    /* Thêm transition cho zoom */
+    cursor: grab;
+    /* Con trỏ khi chưa zoom */
+}
+
+.edit-image-container img.zoomed {
+    cursor: zoom-out;
+}
+
+.edit-controls {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background: var(--surface-color);
+    border-radius: 0 0 12px 12px;
+    border-top: 1px solid var(--border-color);
+}
+
+.upload-section>a.button#edit-btn {
+    display: block;
+    width: fit-content;
+    margin: 1rem auto 0;
+}
+
+/* Thêm style cho trang hoàn tất tải về */
+.complete-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 350px;
+}
+
+.complete-section h2 {
+    color: var(--text-color);
+    /* Màu chữ thường */
+    font-weight: 500;
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+}
+
+.complete-section .button {
+    margin-top: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.4rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    section {
+        padding: 1.5rem;
+    }
+
+    .button {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+    }
+
+    .edit-navbar {
+        justify-content: center;
+        padding: 10px 15px;
+    }
+
+    .nav-button {
+        padding: 7px 15px;
+        font-size: 0.9rem;
+    }
+
+    .edit-image-container {
+        padding: 20px;
+        min-height: 300px;
+    }
+
+    .complete-section {
+        min-height: 250px;
+    }
+
+    .complete-section h2 {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header .container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .language-selector {
+        margin-top: 5px;
+    }
+
+    .upload-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .edit-navbar {
+        gap: 8px;
+    }
+
+    .nav-button {
+        flex-grow: 1;
+        /* Cho nút chiếm không gian */
+        justify-content: center;
+    }
+}
