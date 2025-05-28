@@ -39,7 +39,7 @@ Segmentation/
 │       └── *.css               # Styling
 └── README.md                   # Tài liệu này
 ```
-
+    best_model_py: https://drive.google.com/file/d/1J1II1ZjSKDkbzBoYZlhArNtBMpCarGN1/view?usp=drive_link (do file quá nặng không tải lên github được)
 ## 🧠 Mô hình Deep Learning
 
 ### 1. UNet (model.py)
